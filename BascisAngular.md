@@ -6,15 +6,20 @@
 + 也可以局部使用AngularJS：如果只是局部需要用到，而非整站，也可以把這個字放在某個應用到AngularJS的div中(例如:div)。
 
 ## ng-model
++ 綁定的動作
 <pre><code>
-  <p>My name is {{yourName || 'Anna'}}!</p>
-  <label>請輸入你的名字，也和大家自我介紹吧! </label>
-  <input type="text" ng-model="yourName" />
+  p My name is {{yourName || 'Anna'}}! p
+  label 請輸入你的名字，也和大家自我介紹吧! label
+  input type="text" ng-model="yourName" 
 </code></pre>
-##Sliding Elements
-+ .slideDown()
-+ .slideUp()
-+ .slideToggle()
+## ng-controller
++ 用來綁定view(html)和model(js)的連結。
++ 使用ng-controller，建立view和model的關係
+<pre><code>
+  body ng-controller="TodoCrtl"
+</code></pre>
++ 指定名稱為"TodoCrtl"的controller，必須與controllers.js裡的主function名稱相同
++ 在model裡面指定變數name的方式為$scope.name，view再透過{{ name }}顯示。
 
 ##Animates
 Syntax: 
