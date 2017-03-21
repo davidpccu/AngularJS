@@ -1,6 +1,6 @@
 # AngularJS
 
-## html ng-app 
+## ng-app 
 + 宣告angular的範圍。
 + 在DOM載入後，AngularJS就會開始尋找ng-app這個字，找到的話，就會把這頁面當成是AngularJS應用程式。
 + 也可以局部使用AngularJS：如果只是局部需要用到，而非整站，也可以把這個字放在某個應用到AngularJS的div中(例如:div)。
@@ -48,10 +48,17 @@
 ## ng-init 
 + model一開始載入，會先執行ng-init，我們可以利用ng-init設定初始值  
 <pre><code>
-  <div ng-init="greeting='Hello'; person='World'">
+  div ng-init="greeting='Hello'; person='World'"
     {{greeting}} {{person}}!
-  </div>
+  div
 </code></pre>
+
+## ng-repeat
++ 透過ng-repeat指令，從陣列中取出每一個item的內容。
++ $index –{number} –取出陣列中的index。(從0開始)
++ $first –{boolean} –如果是第一個項目，就傳回true、否則為false。 
++ $middle –{boolean} –如果不是第一個和最後一個項目，就傳回true、否則為false。 
++ $last –{boolean} –如果是最後一個項目，就傳回true、否則為false。
 
 ## 其他參考函示庫(圖表)
 + [Charts.js](http://www.chartjs.org/ "Charts.js")
