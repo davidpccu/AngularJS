@@ -1,16 +1,16 @@
-# jQuery effects
+# AngularJS
 
-##Basic Showing and Hiding
-+ .show()
-+ .hide()
-+ .toggle()
+## html ng-app 
++ 宣告angular的範圍。
++ 在DOM載入後，AngularJS就會開始尋找ng-app這個字，找到的話，就會把這頁面當成是AngularJS應用程式。
++ 也可以局部使用AngularJS：如果只是局部需要用到，而非整站，也可以把這個字放在某個應用到AngularJS的div中(例如:div)。
 
-##Fading Elements In and Out
-+ .fadeIn()
-+ .fadeOut()
-+ .fadeToggle()
-+ .fadeTo()
-
+## ng-model
+<pre><code>
+  <p>My name is {{yourName || 'Anna'}}!</p>
+  <label>請輸入你的名字，也和大家自我介紹吧! </label>
+  <input type="text" ng-model="yourName" />
+</code></pre>
 ##Sliding Elements
 + .slideDown()
 + .slideUp()
