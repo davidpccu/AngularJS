@@ -21,21 +21,37 @@
 + 指定名稱為"TodoCrtl"的controller，必須與controllers.js裡的主function名稱相同
 + 在model裡面指定變數name的方式為$scope.name，view再透過{{ name }}顯示。
 
-##Animates
-Syntax: 
-<pre><code>.animate( properties [, duration ] [, easing ] [, complete ] )</code></pre>
-EX.
+## $scope
++ scope是AngularJS在建立(controller)應用程式時，會產生一個物件，用來代表應用程式的Model。所以我們透過$scope.變數，才能得到變數的(值)位址。
 <pre><code>
-$('#message').animate(
-{  left: '650px',   opacity: 0.5,  fontSize: '24px'  },  1500
-);
+  function TodoCrtl($scope) { 
+    $scope.name = "Anna";
+  }
+  p ng-controller="TodoCrtl">My name is {{ name }}! p
 </code></pre>
 
-##Easings
-+ jQuery can only use 'swing' or 'linear' effect
-+ jQuery-UI have a lot more choices:[Easings](http://easings.net/zh-tw "Easings")
-+ 參考範例 carousel
+## ng-click
+<pre><code>
+  input type="text" ng-model="price" 
+  
+  $scope.action = function () {
+    $scope.price = 100;
+  };
+  
+  input type="button" value="Click" ng-click="action()"
+</code></pre>
+## ng-show/ng-hide
++ 顯示: 欲顯示的文字
++ 隱藏: 欲隱藏的文字
++ 判斷是否要顯示
 
+## ng-init 
++ model一開始載入，會先執行ng-init，我們可以利用ng-init設定初始值  
+<pre><code>
+  <div ng-init="greeting='Hello'; person='World'">
+    {{greeting}} {{person}}!
+  </div>
+</code></pre>
 
 ## 其他參考函示庫(圖表)
 + [Charts.js](http://www.chartjs.org/ "Charts.js")
