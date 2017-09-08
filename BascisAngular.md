@@ -41,7 +41,7 @@
   <p ng-controller="TodoCrtl">My name is {{ name }}!</p>
 ```
 
-+ [Demo](http://jsbin.com/ogecuw/2/edit?html,js,output "Demo")
+[Demo](http://jsbin.com/ogecuw/2/edit?html,js,output "Demo")
 
 ## ng-click
 
@@ -55,7 +55,7 @@
   };
 ```
 
-+ [Demo](http://output.jsbin.com/angularjs-controller/3 "Demo")
+[Demo](http://output.jsbin.com/angularjs-controller/3 "Demo")
 
 ## ng-show/ng-hide
 
@@ -64,17 +64,51 @@
 + 判斷是否要顯示
 
 ``` bash
-
+// 在欲觸發的事件上，綁定model名稱
+    <select ng-model="selection">
+            <option value="content1" >下拉選單文字1</option>
+            <option value="content2">下拉選單文字2</option>
+    </select>
+    
+//透過判斷式，決定顯示內容
+<article ng-show="自訂model名稱 == 'content1'">判斷是否要顯示的內容</article>
 ``` 
+
+[Demo](http://jsbin.com/opojaq/8/edit?html,output "Demo")
+[Demo](http://jsbin.com/afomon/7/edit?html,output "Demo")
 
 ## ng-init 
 
 + model一開始載入，會先執行ng-init，我們可以利用ng-init設定初始值  
 
 ``` bash
-  div ng-init="greeting='Hello'; person='World'"
-    {{greeting}} {{person}}!
-  div
+  <div ng-app="">
+    <div ng-init="greeting='Hello'; person='World'">
+      {{greeting}} {{person}}!
+    </div>
+  </div>
+``` 
++ 只要在你欲顯示的區域範圍內加上ng-init="變數＝‘值’"
++ 若有兩個以上的變數需要設定初始值，則使用分號區隔
+
+[Demo](http://jsbin.com/ucodup/7/edit?html,js,output "Demo")
+
+``` bash
+
+// 加上一個名稱為"MainCtrl"的controller
+
+  <div ng-app="" ng-controller="MainCtrl">
+    <div>
+      {{greeting}} {{person}}!
+    </div>
+  </div>
+  
+// 在名稱為"MainCtrl"的controller中，建立兩個名稱為greeting和person的變數，並且指定初始值。
+  function MainCtrl($scope){
+    $scope.greeting="Hello";
+    $scope.person="World";
+  }
+
 ``` 
 
 ## ng-repeat
@@ -84,7 +118,42 @@
 + $middle –{boolean} –如果不是第一個和最後一個項目，就傳回true、否則為false。 
 + $last –{boolean} –如果是最後一個項目，就傳回true、否則為false。
 
-## 其他參考函示庫(圖表)
-+ [Charts.js](http://www.chartjs.org/ "Charts.js")
-+ [Morris.js](http://morrisjs.github.io/morris.js/index.html "Morris.js")
+``` bash
+//增加ng-controller，綁定model。
+    <div ng-controller="MainCtrl">
 
+//在欲顯示的html標籤中，加上ng-repeat。
+    <p ng-repeat="name in names"> {{name}}</p>
+
+// 使用$index可以取用陣列id
+    <p ng-repeat="name in names">{{$index+1}}. {{name}}</p>
+    
+// 使用.length可以取用陣列長度
+    <p>以上有{{names.length}}筆資料</p>
+```
+[Demo](http://jsbin.com/ukatix/3/edit?html,js,output "Demo")
+
+### HTML input
+
+#### input事件有以下屬性
++ name 名稱
++ ng-model 綁定的資料
++ required 限制是否必填
++ ng-required 限制是否必填
++ ng-minlength 限制最小長度
++ ng-maxlength 限制最大長度
++ ng-pattern 限制RegExp格式
++ ng-change 當input的值發生變化的時候執行
+
+#### 除此之外，input還包含了以下類型：
++ type="checkbox"
++ type="email"
++ type="number"
++ type="radio"
++ type="text"
++ type="url"
+
+
+
+
+[參考](http://ithelp.ithome.com.tw/articles/10132196 "參考")
