@@ -7,51 +7,75 @@
 
 ## ng-model
 + 綁定的動作
-<pre><code>
-  p My name is {{yourName || 'Anna'}}! p
-  label 請輸入你的名字，也和大家自我介紹吧! label
-  input type="text" ng-model="yourName" 
-</code></pre>
+
+``` bash
+  <p>My name is {{yourName || 'Anna'}}!</p>
+  <label>請輸入你的名字，也和大家自我介紹吧! </label>
+  <input type="text" ng-model="yourName" />
+```
+
+為什麼變數後面要加上|| ？
+主要的目的是：如果無法獲得yourName變數的值，就可以預先顯示"Anna這個字串"
+
+
 ## ng-controller
 + 用來綁定view(html)和model(js)的連結。
 + 使用ng-controller，建立view和model的關係
-<pre><code>
-  body ng-controller="TodoCrtl"
-</code></pre>
+
+``` bash
+  <body ng-controller="TodoCrtl">
+```
+
 + 指定名稱為"TodoCrtl"的controller，必須與controllers.js裡的主function名稱相同
 + 在model裡面指定變數name的方式為$scope.name，view再透過{{ name }}顯示。
 
 ## $scope
+
 + scope是AngularJS在建立(controller)應用程式時，會產生一個物件，用來代表應用程式的Model。所以我們透過$scope.變數，才能得到變數的(值)位址。
-<pre><code>
+
+``` bash
   function TodoCrtl($scope) { 
     $scope.name = "Anna";
   }
-  p ng-controller="TodoCrtl">My name is {{ name }}! p
-</code></pre>
+  
+  <p ng-controller="TodoCrtl">My name is {{ name }}!</p>
+```
+
++ [Demo](http://jsbin.com/ogecuw/2/edit?html,js,output "Demo")
 
 ## ng-click
-<pre><code>
-  input type="text" ng-model="price" 
+
+透過html的按鈕，去觸發ng-click事件
+
+``` bash
+  <input type="button" value="Click" ng-click="action()">
   
   $scope.action = function () {
     $scope.price = 100;
   };
-  
-  input type="button" value="Click" ng-click="action()"
-</code></pre>
+```
+
++ [Demo](http://output.jsbin.com/angularjs-controller/3 "Demo")
+
 ## ng-show/ng-hide
+
 + 顯示: 欲顯示的文字
 + 隱藏: 欲隱藏的文字
 + 判斷是否要顯示
 
+``` bash
+
+``` 
+
 ## ng-init 
+
 + model一開始載入，會先執行ng-init，我們可以利用ng-init設定初始值  
-<pre><code>
+
+``` bash
   div ng-init="greeting='Hello'; person='World'"
     {{greeting}} {{person}}!
   div
-</code></pre>
+``` 
 
 ## ng-repeat
 + 透過ng-repeat指令，從陣列中取出每一個item的內容。
