@@ -198,7 +198,97 @@ Html:
 [Demo1](http://jsbin.com/oQEnaKE/1/edit?html,js,output "Demo")
 [Demo2](http://jsfiddle.net/MTfRD/3/ "Demo")
 
+## ng-switch
 
++ 根據ng-switch去篩選要選擇的內容
++ 通常會和ng-option的下拉選單一起搭配使用
+
+``` bash
+
+    <select ng-model="Select1" required ng-options="lottery.ProductName for lottery in lotteryModel"></select>
+
+使用ng-switch on，作為篩選的依據 & 使用ng-switch-when，決定當下是否顯示
+
+    <div class="animate-switch-container" ng-switch on="Select1.ProductName">
+        <div ng-switch-when="威力彩">威力彩</div>
+        <div ng-switch-when="今彩539">今彩539</div>
+        <div ng-switch-default>大樂透</div> //使用ng-switch-default，預設的顯示內容
+    </div>
+    
+    function lotteryCtrl($scope)
+    {
+      $scope.lotteryModel = [
+        {
+          id: 1,
+          ProductName: '威力彩'
+        },
+        {
+          id: 2,
+          ProductName: '今彩539'
+        },
+        {
+          id: 3,
+          ProductName: '大樂透'
+        }];
+
+      // 也可以在controller中，建立初始值
+      $scope.Select1 = $scope.lotteryModel[0];
+    }
+    
+``` 
+
+[Demo](http://jsbin.com/UCegIve/2/edit?html,js "Demo")
+
+## ng-change
+
++當改變輸入的數值，就會執行ng-change事件。
+
+
+1. 搭配checkbox的input輸入
+
+``` bash
+
+// 使用ng-model指令，命名"confirmed"的model作為綁定資料。
+// 當model 的資料改變，就會執行change()這個function
+
+<input type="checkbox" ng-model="confirmed" ng-change="change()"/>
+
+function Controller($scope) {
+
+  $scope.change = function() {
+    $scope.counter++;
+  };
+}
+
+``` 
+
+2. 搭配ng-option的下拉選單輸入
+
+``` bash
+
+// 一旦選擇改變下拉選單的內容，就會執行update() 這個function。
+
+<select ng-options="size as size.counter for size in sizes " ng-model="item" ng-change="update()"></select>
+
+$scope.sizes = [ 
+    {code: 1, name: 'n1',counter:1}, 
+    {code: 2, name: 'n2',counter:2}
+  ];
+
+$scope.update = function() {
+    angular.forEach($scope.sizes, function (value, key) {
+        
+        value.counter=value.counter*3;
+        
+        });
+  };
+$scope.item=$scope.sizes[0];
+
+``` 
+
+[Demo](http://jsbin.com/ICAyANe/3/edit?html,js,output "Demo")
+
+## ng-include
 
 
 [參考](http://ithelp.ithome.com.tw/articles/10132196 "參考")
