@@ -153,6 +153,51 @@
 + type="text"
 + type="url"
 
+``` bash
+
+checkbox 範例
+
+Html:
+
+ <form name="myForm" ng-controller="Ctrl">
+    Value1: <input type="checkbox" ng-model="value1"> <br/>
+    Value2: <input type="checkbox" ng-model="value2"
+                   ng-true-value="YES" ng-false-value="NO"> <br/>
+    <tt>value1 = {{value1}}</tt><br/>
+    <tt>value2 = {{value2}}</tt><br/>
+ </form>
+ 
+ Js:
+ 
+   function Ctrl($scope) {
+    $scope.value1 = true;
+    $scope.value2 = 'YES';
+  }
+
+``` 
+
+[Demo](http://jsbin.com/egavik/1/edit "Demo")
+
+## ng-options
+
++HTML SELECT事件有一個ng-options參數，ng-options透過ng-model 綁定，用來顯示下拉選單。
+
+``` bash
+
+<select ng-model="Select1" ng-options="lottery.ProductName for lottery in lotteryModel">
+    <option value="">-- 請選擇 --</option>
+</select>
+
+<p>{{ Select1.ProductName }}</p>
+
+一定要使用ng-model去data-bind
+透過{{ Select1.ProductName }} 把選到的值呼叫出來
+
+``` 
+
+[Demo1](http://jsbin.com/oQEnaKE/1/edit?html,js,output "Demo")
+[Demo2](http://jsfiddle.net/MTfRD/3/ "Demo")
+
 
 
 
