@@ -1,5 +1,12 @@
 # AngularJS
 
+#### angularJS的特性是遵循MVC框架。
+
++ view是用來顯示資料
++ model是用來存放資料
++ controller是用來建立view與model之間的行為，處理事件。
+
+
 ## ng-app 
 + 宣告angular的範圍。
 + 在DOM載入後，AngularJS就會開始尋找ng-app這個字，找到的話，就會把這頁面當成是AngularJS應用程式。
@@ -180,7 +187,7 @@ Html:
 
 ## ng-options
 
-+HTML SELECT事件有一個ng-options參數，ng-options透過ng-model 綁定，用來顯示下拉選單。
++ HTML SELECT事件有一個ng-options參數，ng-options透過ng-model 綁定，用來顯示下拉選單。
 
 ``` bash
 
@@ -209,7 +216,8 @@ Html:
 
 使用ng-switch on，作為篩選的依據 & 使用ng-switch-when，決定當下是否顯示
 
-    <div class="animate-switch-container" ng-switch on="Select1.ProductName">
+<body ng-controller="lotteryCtrl">
+    <div ng-switch on="Select1.ProductName">
         <div ng-switch-when="威力彩">威力彩</div>
         <div ng-switch-when="今彩539">今彩539</div>
         <div ng-switch-default>大樂透</div> //使用ng-switch-default，預設的顯示內容
@@ -234,14 +242,14 @@ Html:
       // 也可以在controller中，建立初始值
       $scope.Select1 = $scope.lotteryModel[0];
     }
-    
+</body>    
 ``` 
 
 [Demo](http://jsbin.com/UCegIve/2/edit?html,js "Demo")
 
 ## ng-change
 
-+當改變輸入的數值，就會執行ng-change事件。
++ 當改變輸入的數值，就會執行ng-change事件。
 
 
 1. 搭配checkbox的input輸入
@@ -289,6 +297,173 @@ $scope.item=$scope.sizes[0];
 [Demo](http://jsbin.com/ICAyANe/3/edit?html,js,output "Demo")
 
 ## ng-include
+
++ 用來載入html的指令
+
+``` bash
+
+使用ng-option建立下拉選單，顯示剛剛建立$scope.templates中的資料。
+
+<div ng-controller="Ctrl">
+    <select ng-model="template" ng-options="t.name for t in templates">
+      <option value="">(blank)</option>
+    </select>
+    url of the template: <tt>{{template.url}}</tt>
+    <hr/>
+    <div>
+      在顯示的區塊中，使用ng-include去綁定欲顯示的html
+      <div ng-include="template.url"></div>
+    </div>
+  </div>
+
+
+在controller裡面指定html的資料
+
+function Ctrl($scope) {
+  $scope.templates =
+    [ { name: 'template1.html', url: 'template1.html'}
+    , { name: 'template2.html', url: 'template2.html'} ];
+    
+  下拉選單內容，預設為第一筆。  
+  $scope.template = $scope.templates[0];
+}
+
+``` 
+
+[Demo](http://plnkr.co/edit/Y43TCNqB62Riyy0pbMG9?p=preview "Demo")
+
+
+## ng-src
+
++ 用來取代html中 img 標籤裡的src屬性
++ 由於AngularJS是整個網站載完後才開始編譯，使用ng-src可以解決還沒載入完html發生的錯誤。
+
+``` bash
+
+直接使用ng-src指令取代src屬性
+
+<img src="圖片路徑" />
+<img ng-src="{{圖片路徑}}" />
+
+也可以使用
+
+<img ng-src="http://www.gravatar.com/avatar/{{hash}}"/>
+
+```
+
+[Demo](http://jsbin.com/eKoG/5/edit?html,js,output "Demo")
+
+## ng-href
+
++ 取代html中 a 標籤裡的href屬性
++ 如果Angular還沒載入或載入失敗，會直接讓href讀取到{{ }}的內容，而a 標籤裡的href屬性無法辨識{{ }}，就會連結到404的錯誤頁面。
+
+``` bash
+
+<a href="https://www.youtube.com/{{ y1 }}"> Youtube1 </a>
+<a ng-href="https://www.youtube.com/{{ y2 }}"> Youtube2 </a>
+
+就算遇到Angular還沒載入或載入失敗的情況
+ng-href僅會將{{}}裡面的值，當作一段字串
+避免發生連結錯誤的情況
+
+```
+
+[Demo](http://jsbin.com/uqAseSi/4/edit?html,js,output "Demo")
+
+## ng-checked
+
++ 綁定checkbox勾選框
+
+``` bash
+
+全部勾選/取消全部勾選的checkbox，加入ng-model="model名稱"
+<input type="checkbox" ng-model="master">
+
+其他要被勾選的checkbox裡，就加入ng-checked="model名稱"
+<p ng-repeat="checkText in checkTexts">
+  <input type="checkbox" ng-checked="master">
+  {{checkText.checkName}}
+</p>
+```
+
+[Demo](http://jsbin.com/UgUfitU/1/edit?html,js "Demo")
+
+## $timeout
+
++ 用來倒數、計時的一種方法
+
+``` bash
+
+以ng-controller宣告timeout執行區域，並傳入$timeout指令
+<body ng-controller="Ctrl">
+  {{counter}}
+  <button ng-click="stop()">Stop</button>    
+</body>
+
+
+透過$timeout觸發timeout
+
+function Ctrl($scope,$timeout) {
+    $scope.counter = 0;
+    $scope.onTimeout = function(){
+        $scope.counter++;
+        mytimeout = $timeout($scope.onTimeout,1000);
+    };
+    var mytimeout = $timeout($scope.onTimeout,1000);
+    
+    $scope.stop = function(){
+        $timeout.cancel(mytimeout);
+    };
+            
+}
+
+```
+
+[Demo](http://jsbin.com/EmijUBi/1/edit?html,js,output "Demo")
+
+
+## ng-bind
+
++ 解決angularjs沒有載入完成或發生失敗的狀況。
+
+通常我們會將綁定model名稱放在{{ }}裡面來顯示model的值。
+正式開發專案時，有可能會載入很多library，
+如果我們載入太多library，HTML 已經載入完畢，而angularjs沒有載入完成或發生失敗的狀況，
+瀏覽器不認識{{ }}這個元素，所以就會直接將{{ }}的內容，當作字串完整的顯示出來。
+
+或是網頁一開始HTML 已經載入完畢，後來angularjs才載入完成，
+即使在執行上沒有問題，但{{ }}的內容就會在網頁上面閃一下，畫面感覺好像有bug 似的。
+此時，我們可以使用ng-bind這個angular指令解決這個問題。
+
+``` bash
+
+在欲顯示的標籤內加入ng-bind="model名稱"
+
+<span ng-bind="name"></span>
+
+```
+
+[Demo](http://jsbin.com/aMomUWU/1/edit?html,js,output "Demo")
+
+
+## ng-cloak
+
++ 和ng-bind很類似，同樣可以解決angularjs沒有載入完成或發生失敗的狀況。
++ 但ng-cloak指令需要另外增加css，用來解決跨瀏覽器顯示的問題。
+
+``` bash
+
+ng-bind的用法是在標籤內使用ng-bind去指定model名稱。
+<span ng-bind="name"></span>
+
+ng-bind的用法也是在標籤內加入ng-cloak指令，但在標籤之間使用{{ model名稱 }}去綁定資料。
+<span ng-cloak>{{ name }}</span>
+
+```
+
+[Demo](http://jsbin.com/aQOBun/3/edit?html,js,output "Demo")
+
 
 
 [參考](http://ithelp.ithome.com.tw/articles/10132196 "參考")
