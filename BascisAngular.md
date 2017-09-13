@@ -674,6 +674,131 @@ active →顯示文字框焦點是否存在
 
 ## ng-form
 
++ ng-form允許有巢狀表單(nest forms)，就是在表單內再增加一個或多個form，而form則無法達到此需求。
+
+``` bash
+
+    <div ng-controller="MyCtrl">
+        <form name="test_form" ng-submit="submit()">
+            //  加入ng-form 給予表單名稱並使用ng-repeat將資料取出後，讓輸入欄位綁定ng-model。
+            <ng-form ng-repeat="key in keys" name="keyForm">
+              姓名：<input type="text" name="input_name" ng-model="key.name" required>
+              年齡：<input type="text" name="input_age" ng-model="key.age" required>
+            </ng-form>
+            
+            <input type="submit" value="新增" ng-click="addKey()"/>  
+            <input type="submit" value="儲存" />
+        </form>  
+        {{keys}}
+     </div>  
+     
+     
+     
+     function MyCtrl($scope){
+  
+        $scope.keys = [];
+        $scope.keys.push({ name: 'ANNA',age:18});
+        $scope.addKey = function () {
+          $scope.keys.push({ name: '',age:null});
+
+          };
+        $scope.submit = function () {
+              console.log($scope.keys);
+          };
+      }
+
+```
+
+[Demo](http://jsbin.com/ULumolE/2/edit?html,js,output "Demo")
+
+
+## ng-mouseover & ng-mouseleave
+
++ 當滑鼠位於元素上方和離開元素所觸發的事件。
+
+``` bash
+
+  <div ng-controller="myCtrl" ng-app>
+    <p ng-show="mouseMode">Hello ANGULARJS!!!</p>
+    <img ng-mouseover="mouseMode=true" ng-mouseleave="mouseMode=false" ng-src="http://angularjs.org/img/AngularJS-large.png" alt="" />
+  </div>
+  
+  function myCtrl($scope){
+      $scope.mouseMode=false;
+  }
+
+
+```
+
+[Demo](http://jsbin.com/Avegaq/1/edit?html,js,output "Demo")
+
+## filter
+
++ angular的filter，可以幫資料做過濾
+
+angular內建的filter有哪些？
++ currency 加入貨幣符號
++ date 可以將 Date 物件轉成指定格式的日期字串
++ filter 可以篩選陣列中的內容
++ json 可以將javascriop物件轉成json字串
++ limitTo 可以限制陣列或字串裡面的字元個數
++ number 可以為數值或指定小數以下位數
++ lowercase 可以將英文字串轉成英文小寫
++ uppercase 可以將英文字串轉成英文大寫
++ orderBy 可以將資料作排序
+
+``` bash
+
+基本用法：
+
+  {{ expression | filter }}
+  
+  
+currency 加入貨幣符號
+
+  預設貨幣格式 ($): {{money | currency}}<br>
+  自訂貨幣格式 (USD$): {{money | currency:"USD$"}}<br>
+  
+  
+date 可以將 Date 物件轉成指定格式的日期字串
+
+  {{ birth | date }}
+  {{ birth | date:'yyyy 年 MM 月 dd 日' }}
+  {{1288323623006 | date:'medium'}}
+
+
+json 可以將javascriop物件轉成json字串
+
+  {{ obj | json }}
+  
+  
+limitTo 可以限制陣列或字串裡面的字元個數
+
+  Limit {{numbers}} to: <input type="integer" ng-model="numLimit">
+  <p>Output numbers: {{ numbers | limitTo:numLimit }}</p>
+  Limit {{letters}} to: <input type="integer" ng-model="letterLimit">
+  <p>Output letters: {{ letters | limitTo:letterLimit }}</p>
+  
+  
+number 可以指定小數以下位數
+
+  {{ num | number }}
+  {{ num | number:5 }}
+
+
+lowercase 可以將英文字串轉成英文小寫
+
+  {{ lower | lowercase }}
+  
+  
+uppercase 可以將英文字串轉成英文大寫
+
+  {{ upper | uppercase }}
+  
+
+```
+
+[Demo](http://jsbin.com/uPETequ/2/edit?html,js,output "Demo")
 
 
 
