@@ -464,6 +464,218 @@ ng-bind的用法也是在標籤內加入ng-cloak指令，但在標籤之間使�
 
 [Demo](http://jsbin.com/aQOBun/3/edit?html,js,output "Demo")
 
+## ng-bind-template
+
++ 把多個model綁成一個群組，再用ng-bind的方法去綁定。
+
+ng-bind、ng-bind-template、ng-cloak都可以解決angularJS檔案來不及被讀取的情況。
+但根據使用上較彈性且較為簡單的選擇是: ng-bind-template>ng-bind>ng-cloak
+
+1. ng-bind-template可以同時綁定兩個以上的model。
+2. ng-bind只能綁定一個model。
+3. ng-cloak可以綁定兩個以上的model，但只能在初次載入時設定model值，且需要增加css解決跨瀏覽器的問題。
+
+
+``` bash
+
+ng-bind的用法：
+<span ng-bind="name"></span>
+
+ng-bind-template的用法：
+<pre ng-bind-template="{{salutation}} {{name}}">
+
+和ng-cloak的用法：
+<span ng-cloak class="ng-cloak">{{ name }}</span>
+
+```
+
+[Demo](http://jsbin.com/aMomUWU/2/edit?html,output "Demo")
+
+## ng-bind-html
+
++ 用來呈現html效果的指令。
+
+``` bash
+
+使用ng-bind-html需要載入ngSanitize模組。
+html-必須載入angular-sanitize.js
+
+js-定義angularjs其他模組
+var app = angular.module('app', ['ngSanitize']);
+
+app.controller('MyCtl', function($scope) {
+    // 建立一個名稱為someHtml的變數，裡面放一個圖片的img標籤
+    $scope.someHtml = '<img src="http://angularjs.org/img/AngularJS-large.png" />'; 
+});
+
+直接使用ng-bind-html來指令model名稱。
+<div ng-bind-html="someHtml"></div>
+
+如果要單純顯示html程式碼， 就可以使用ng-bind顯示內容。
+<pre ng-bind="someHtml"></pre>
+
+```
+
+[Demo](http://jsbin.com/oYAqeya/2/edit?html,js "Demo")
+
+## ng-class
+
++ 在html中設定css樣式
+
+1. 針對指定區域，如果true就執行Ａ樣式，false就執行B樣式。
+
+``` bash
+
+(1) 設定一個變數名稱，用來控制樣式的顯示範例中，是在controller裡面，建立一個名稱為isActive的變數名稱。
+
+    function Ctrl($scope) { 
+        $scope.isActive = true;
+    }
+
+(2) 設定true和false的樣式，範例中設定兩個名稱為active和inactive的樣式
+
+    .active{
+      color:red;
+    }
+    .inactive{
+      color:blue;
+    }
+
+(3) 將ng-class放在欲顯示的標籤中
+    {true: '樣式名稱1', false: '樣式名稱2}[控制變數]
+    如果變數isActive是true，執行名稱為style1的樣式。
+    如果變數isActive是false，則執行稱為style2的樣式。
+
+    <p ng-class="{true: 'active', false: 'inactive'}[isActive]">Hello World</p>
+
+```
+
+[Demo](http://jsbin.com/rutizelozo/edit?html,js,output "Demo")
+
+
+2. 針對指定區域，如果x變數等於true就執行Ａ樣式，y變數等於true也可以執行B樣式。
+
+``` bash
+
+(1) 建立樣式是否顯示的控制變數，範例中建立兩個變數，並將內容預設為true
+
+    function Ctrl($scope) { 
+        $scope.isActive1 = true;
+        $scope.isActive2 = true;
+    }
+    
+(2) 建立樣式，範例中建立style1和style2兩個樣式
+
+    .style1{
+      text-decoration: line-through;
+    }
+    .style2{
+      color:blue;
+    }
+
+(3) 在標籤中加入ng-class指令，並加入{’css名稱1‘：是否顯示,’css名稱2‘：是否顯示} 樣式中間以逗號區隔
+
+<p ng-class="{'style1': isActive1, 'style2': isActive2}">Hello World</p>
+
+```
+
+[Demo](http://jsbin.com/jugunagete/edit?html,js,output "Demo")
+
+
+Angular ng-class 製作動畫 DOM 的出現/消失效果
+
+[Demo](http://jsfiddle.net/deathhell/eek3e/ "Demo")
+
+
+## ng-blur
+
++ 使用在window, input, select, textarea, a，這五種標籤，用來判斷焦點是否存在。
+
+``` bash
+
+首先建立兩個樣式，用來顯示文字框焦點是否存在的視覺效果
+    input[type="text"].myFocus {
+        background-color: yellow;
+      }
+    input[type="text"].myBlur {
+        background-color: red;
+      }
+      
+使用ng-init，建立變數的初始值
+
+focus →是否顯示焦點存在的樣式
+blur →是否顯示焦點離開的樣式
+active →顯示文字框焦點是否存在
+
+    ng-init="focus=false;blur=false;active=false"
+    
+用ng-class來顯示不同的樣式。
+    ng-class="{ myFocus: focus, myBlur: blur }" 
+    
+用ng-focus和ng-blur這兩個事件，去執行不同的行為
+    ng-focus="focus=true;blur=false;active=true;" ng-blur="blur=true;focus=false;active=false;" />
+
+```
+
+[Demo](http://jsbin.com/EhepoBe/1/edit?html,css,output "Demo")
+
+
+## $watch
+
++ 指定監控的範圍，一旦範圍內的value發生改變，所有地方都會自動更新
++ 當view或model改變時，就會觸發事件
++ watch的值會傳回newValue,oldValue，提供“改變的新數值”和“前一次改變的舊數值
+
+``` bash
+
+在欲監控的的標籤下，給定model名稱，用來綁定內容，範例中是給輸入框名稱為"test1"的model
+
+    <input type="text" ng-model="test1"/>
+
+使用$watch指令，決定監控的model內容，監控內容發生改變後，並接著執行function。
+
+    $scope.$watch('test1', function(newValue, oldValue) {
+      //這裡輸入觸發$watch之後，欲觸發的行為
+
+    },true);
+    
+```
+
+[Demo](http://jsbin.com/oHIXIqa/3/edit?html,js,console,output "Demo")
+
+
+## ng-style
+
++ 直接設定css樣式的指令
+
+``` bash
+
+在欲執行的標籤內，加入ng-style指令，範例中是執行一個名稱為set_color的方法。
+
+    <p ng-style="set_color()">Anna</p>
+
+觸發function之後，回傳一個object，裡面放你要設定的CSS樣式
+
+    $scope.set_color = function (){
+        return { color: "blue" };
+    };
+    
+```
+
+[Demo](http://jsbin.com/oKohAba/2/edit?html,js,output "Demo")
+
+
+## angular與form的應用
+
++ 透過angular與form的應用，可以快速處理表單可能會遇到的問題。
+
+[Demo](http://ithelp.ithome.com.tw/articles/10140147 "Demo")
+
+
+## ng-form
+
+
+
 
 
 [參考](http://ithelp.ithome.com.tw/articles/10132196 "參考")
