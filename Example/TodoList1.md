@@ -11,7 +11,7 @@
 + ng-model 指定給<input>，這樣我們就把view和model作好
 + ng-submit 送出表單時，去執行 addItem 這個函式
 
-``` bash
+``` html
 <!DOCTYPE html>
   <html ng-app>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
@@ -32,7 +32,7 @@
 
 ## Js
 
-``` bash
+``` javascript
 function TodoCrtl($scope) {
   $scope.newItem = "";
   $scope.todoList = [{ label: "買牛奶" }, { label: "繳電話費" }];

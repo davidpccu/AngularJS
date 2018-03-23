@@ -8,7 +8,7 @@
 + ng-click 執行removeItem這個事件處理器，參數則是代表自己的item
 + filter 是一個通用型的過濾器，你可以指定字串、物件或函式給它當過濾條件
 
-``` bash
+``` html
 <!DOCTYPE html>
   <html ng-app>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
@@ -41,7 +41,7 @@
 
 ## Js
 
-``` bash
+``` javascript
 function TodoCrtlRemovable($scope) {
   $scope.newItem = '';
   $scope.todoList = [];
