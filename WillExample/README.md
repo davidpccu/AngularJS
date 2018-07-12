@@ -22,6 +22,23 @@
 
 開啟網頁: `http://localhost:4200/`
 
+## 加入靜態檔案
+
+將檔案放置src目錄下，手動更新angular.json
+
+EX: 增加api資料夾、blog-index.html
+
+```json
+
+"assets": [
+                "src/favicon.ico",
+                "src/assets",
+                "src/api",
+                "src/blog-index.html"
+            ]
+
+```
+
 ## ng
 
 查詢可建立哪些component類型
