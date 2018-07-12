@@ -49,3 +49,11 @@ EX: 增加api資料夾、blog-index.html
 
 `ng generate component page1`
 `ng g c page1`
+
+部屬
+
+`ng build`
+
+部屬(minify))
+
+`ng build --prod`
