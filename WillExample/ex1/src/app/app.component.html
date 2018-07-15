@@ -45,10 +45,10 @@
     <div class="title-wrapper">
         <div class="container">
 
-            <img src="/assets/images/logo.png" class="pull-left logo" alt="The Will Will Web">
+            <img [title]="title" [src]="imgurl" [attr.data-title]='title' class="pull-left logo" alt="The Will Will Web">
 
             <div class="pull-left">
-                <h1><a href="{{ url }}">{{ title }}</a></h1>
+                <h1><a [href]="url">{{ title }}</a></h1>
                 <h3>記載著 Will 在網路世界的學習心得與技術分享</h3>
             </div>
 
@@ -403,5 +403,3 @@
     </div>
 </footer>
 <!-- Footer END -->
-
-<app-page1></app-page1>
