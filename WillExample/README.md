@@ -83,7 +83,6 @@ EX: 增加api資料夾、blog-index.html
 
 (event) = 'Method($event)'
 
-
 //EX:
 on-click = 'Method($event)'
 (click) = 'Method($event)'
