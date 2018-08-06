@@ -14,4 +14,14 @@ export class AppComponent {
       this.title = 'The Will Will Web';
     }, 3000);
   }
+
+  changeTitle($event) {
+    this.title = 'The Will Will Web SKR~';
+
+    if ($event.altKey) {
+      this.title = 'SKR SKR SKR~';
+    }
+
+    console.log($event);
+  }
 }

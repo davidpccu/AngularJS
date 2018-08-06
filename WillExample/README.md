@@ -48,6 +48,7 @@ EX: 增加api資料夾、blog-index.html
 建立component
 
 `ng generate component page1`
+
 `ng g c page1`
 
 部屬
@@ -58,3 +59,41 @@ EX: 增加api資料夾、blog-index.html
 
 `ng build --prod`
 
+## ng Biding
+
+### 內嵌繫結 (interpolation)
+
+```JS
+
+{{property}}
+
+```
+
+### 屬性繫結 (Property Binding)
+
+```JS
+
+[property] = 'statement'
+
+```
+
+### 事件繫結 (Event Binding)
+
+```JS
+
+(event) = 'Method($event)'
+
+
+//EX:
+on-click = 'Method($event)'
+(click) = 'Method($event)'
+
+```
+
+### 雙向繫結 (Two-way Binding)
+
+```JS
+
+[(ngModel)] = 'property'
+
+```

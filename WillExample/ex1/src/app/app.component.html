@@ -45,7 +45,7 @@
     <div class="title-wrapper">
         <div class="container">
 
-            <img [title]="title" [src]="imgurl" [attr.data-title]='title' class="pull-left logo" alt="The Will Will Web">
+            <img on-click="changeTitle($event)" [title]="title" [src]="imgurl" [attr.data-title]='title' class="pull-left logo" alt="The Will Will Web">
 
             <div class="pull-left">
                 <h1><a [href]="url">{{ title }}</a></h1>
