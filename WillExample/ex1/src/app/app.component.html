@@ -152,9 +152,9 @@
                 <div class="widget search">
                     <div class="widget-content">
                         <div id="searchbox">
-                            <input type="text" on-keyup="showInput($event)" placeholder="請輸入搜尋關鍵字" accesskey="s">
+                            <input type="text" [(ngModel)]='keyword' on-keyup="showInput($event)" placeholder="請輸入搜尋關鍵字" accesskey="s">
                             <input type="button" value="搜尋" id="searchbutton">
-                            <span>{{ inputLength }}</span>
+                            <span>目前長度:{{ inputLength }}內容:{{keyword}}</span>
                         </div>
                     </div>
                 </div>

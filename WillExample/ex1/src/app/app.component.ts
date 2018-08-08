@@ -11,6 +11,8 @@ export class AppComponent {
   imgurl = '/assets/images/logo.png';
   h3 = '記載著 Will 在網路世界的學習心得與技術分享';
   inputLength  = 0;
+  keyword = '';
+
   constructor() {
     setTimeout(() => {
       this.title = 'The Will Will Web';
