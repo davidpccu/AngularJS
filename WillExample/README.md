@@ -96,3 +96,15 @@ on-click = 'Method($event)'
 [(ngModel)] = 'property'
 
 ```
+
+## 範本參考變數 Template reference variables
+
+> 範本中任意Html標籤套用 #name 語法
+> + 會在範本內建立一個名為name的區域變數
+> + 該name區域變數只能用於目前元件範本中
+> + 該name區域變數將會儲存該標籤的DOM物件
+> + 可以透過「事件繫結」將任意DOM物件中的任意屬性傳回元件類別中(Component class)
+
+> 以下兩種是完全相等的語法
+> + #name
+> + ref-name
