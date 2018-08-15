@@ -10,6 +10,7 @@ import { Comp1Component } from './comp1/comp1.component';
     Comp1Component
   ],
   imports: [
+    FormsModule,
     BrowserModule
   ],
   providers: [],

@@ -19,4 +19,20 @@
 <br>
 <span [innerHTML]='myScript'></span>
 <br>
-<span>{{myScript}}</span>
+<span #tScriptString>{{myScript}}</span>
+<br>
+<button (click)='myClick()'>Even click</button>
+<br>
+<span>{{ myString }} + {{tScriptString.innerHTML}}</span>
+<br>
+<br>
+<input type="text" #tKeyword [(ngModel)]="keyWord" placeholder="請輸入搜尋關鍵字" accesskey="s"><br>
+ <span>目前長度:{{ tKeyword.value.length }}<br>內容: {{ keyWord }}</span><br>
+<br>
+<ul>
+  <li *ngFor="let hero of myArray">{{hero}}</li>
+</ul>
+<br>
+<ul>
+  <li *ngFor="let hero of myAddress">{{ hero.City }} - {{ hero.Country }}</li>
+</ul>
