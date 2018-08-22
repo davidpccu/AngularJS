@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '../../../node_modules/@angular/platform-browser';
+import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-comp1',
@@ -7,7 +7,9 @@ import { Title } from '../../../node_modules/@angular/platform-browser';
   styleUrls: ['./comp1.component.css']
 })
 export class Comp1Component implements OnInit {
+ @Input() var1: string;
 
+  now = new Date();
   title = 'Angular blog';
   isUnchanged = true;
   isChanged = false;
