@@ -7,18 +7,22 @@ import { HttpClientModule } from '@angular/common/http';
 // import { CheckoutComponent } from './checkout/checkout.component';
 import { MyCopModule } from '../checkout/my-cop/my-cop.module';
 import { ShowitDirective } from './showit.directive';
+import { AppRoutingModule } from './/app-routing.module';
+import { ErrpageComponent } from './errpage/errpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Comp1Component,
     ShowitDirective,
+    ErrpageComponent,
     // CheckoutComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
-    MyCopModule
+    MyCopModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
