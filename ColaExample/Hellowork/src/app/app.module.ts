@@ -9,6 +9,7 @@ import { MyCopModule } from '../checkout/my-cop/my-cop.module';
 import { ShowitDirective } from './showit.directive';
 import { AppRoutingModule } from './/app-routing.module';
 import { ErrpageComponent } from './errpage/errpage.component';
+import { Comp2Component } from './comp2/comp2.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ErrpageComponent } from './errpage/errpage.component';
     Comp1Component,
     ShowitDirective,
     ErrpageComponent,
+    Comp2Component,
     // CheckoutComponent
   ],
   imports: [
