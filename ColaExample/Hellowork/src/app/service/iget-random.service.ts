@@ -12,7 +12,7 @@ export class IGetRandomService {
 
   }
 
-getConfig() {
-  return this.http.get(this.configUrl).subscribe();
-}
+  getConfig() {
+    return this.http.get(this.configUrl).subscribe();
+  }
 }
