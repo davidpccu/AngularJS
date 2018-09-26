@@ -4,6 +4,7 @@ import { IGetRandomService } from '../service/iget-random.service';
 import { Observable, of, interval } from 'rxjs';
 import { catchError, map, tap, take } from 'rxjs/operators';
 import { AsyncAction } from 'rxjs/internal/scheduler/AsyncAction';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const myInit = interval(1000);
 const takeFive = myInit.pipe(take(5));
@@ -20,7 +21,8 @@ export class Comp3Component implements OnInit {
   myDate: AsyncAction;
   myCount = myInit.pipe(take(5));
   constructor(private myHiService: HiServiceService,
-    private myGetPost: IGetRandomService) {
+    private myGetPost: IGetRandomService,
+    private http: HttpClient) {
     this.numComp3 = this.myHiService.getFn3();
   }
 
@@ -51,6 +53,9 @@ export class Comp3Component implements OnInit {
     );
     // myInt.subscribe( n=> console.log('Hi Observeable ${n} :' + this.getResult1()) );
 
+    // this.http.get('https://jsonplaceholder.typicode.com/posts').subscribe( data => console.dir(data));
+
+    this.http.get('https://jsonplaceholder.typicode.com/posts', {responseType: 'text'}).subscribe( data => console.dir(data));
   }
 
 }
