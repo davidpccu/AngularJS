@@ -1,10 +1,7 @@
 # TypeScript 中文教學手冊
 
-正體翻譯：陳傳興 ([@kkbruce](https://github.com/kkbruce))
-
-2016年3月
-
-TypeScript是微軟公司的注冊商標。
+## 用不用 TypeScript 隨便你，反正我是用了
+[Will 保哥 (JSDC 2020)](https://www.youtube.com/watch?v=SCLKlc6G0_k&t=644s)
 
 ## 目錄
 
